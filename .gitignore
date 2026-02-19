@@ -2,6 +2,10 @@
 node_modules/
 .pnpm-store/
 
+# Lock files (this project uses pnpm - package-lock.json should not exist)
+package-lock.json
+yarn.lock
+
 # Build outputs
 .next/
 dist/
