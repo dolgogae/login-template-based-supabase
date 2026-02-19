@@ -1,5 +1,5 @@
 import { getAdMobConfig, getAdMobUnitId } from "@repo/ads";
-import { useCallback } from "react";
+import { useCallback, useEffect } from "react";
 import { Platform } from "react-native";
 import { type RewardedAdReward, useRewardedAd } from "react-native-google-mobile-ads";
 
@@ -31,9 +31,16 @@ export function useAdMobRewarded(options?: {
     ? getAdMobUnitId("rewarded", platform)
     : "ca-app-pub-3940256099942544/5224354917"; // 테스트 ID
 
-  const { isLoaded, load, show } = useRewardedAd(unitId, {
+  const { isLoaded, isEarnedReward, reward, load, show } = useRewardedAd(unitId, {
     requestNonPersonalizedAdsOnly: false,
   });
+
+  // 보상 획득 시 콜백 실행
+  useEffect(() => {
+    if (isEarnedReward && reward && options?.onRewarded) {
+      options.onRewarded(reward);
+    }
+  }, [isEarnedReward, reward, options?.onRewarded]);
 
   const safeLoad = useCallback(() => {
     if (!config.enabled) return;

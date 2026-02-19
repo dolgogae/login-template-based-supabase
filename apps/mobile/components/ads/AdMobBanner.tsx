@@ -1,6 +1,6 @@
 import { getAdMobConfig, getAdMobUnitId } from "@repo/ads";
 import { Platform } from "react-native";
-import { BannerAd, BannerAdSize, TestIds } from "react-native-google-mobile-ads";
+import { BannerAd, BannerAdSize } from "react-native-google-mobile-ads";
 
 export function AdMobBanner() {
   const config = getAdMobConfig();

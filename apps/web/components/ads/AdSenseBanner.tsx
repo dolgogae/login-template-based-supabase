@@ -1,7 +1,6 @@
 "use client";
 
 import { getAdSenseConfig } from "@repo/ads";
-import Script from "next/script";
 import { useEffect, useRef } from "react";
 
 interface AdSenseBannerProps {
@@ -45,22 +44,14 @@ export function AdSenseBanner({
   if (!config.enabled || !config.clientId || !config.slotId) return null;
 
   return (
-    <>
-      <Script
-        async
-        src={`https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=${config.clientId}`}
-        crossOrigin="anonymous"
-        strategy="lazyOnload"
-      />
-      <ins
-        ref={adRef}
-        className={`adsbygoogle${className ? ` ${className}` : ""}`}
-        style={{ display: "block", ...style }}
-        data-ad-client={config.clientId}
-        data-ad-slot={config.slotId}
-        data-ad-format={format}
-        data-full-width-responsive={responsive ? "true" : "false"}
-      />
-    </>
+    <ins
+      ref={adRef}
+      className={`adsbygoogle${className ? ` ${className}` : ""}`}
+      style={{ display: "block", ...style }}
+      data-ad-client={config.clientId}
+      data-ad-slot={config.slotId}
+      data-ad-format={format}
+      data-full-width-responsive={responsive ? "true" : "false"}
+    />
   );
 }
