@@ -1,9 +1,21 @@
 {
   "extends": "expo/tsconfig.base",
   "compilerOptions": {
+    // expo/tsconfig.base가 resolve 안 될 경우를 대비해 핵심 옵션을 명시
+    "jsx": "react-native",
+    "lib": ["DOM", "ESNext"],
+    "module": "preserve",
+    "moduleResolution": "bundler",
+    "noEmit": true,
+    "resolveJsonModule": true,
+    "allowSyntheticDefaultImports": true,
+    "esModuleInterop": true,
+    "skipLibCheck": true,
     "strict": true,
     "paths": {
       "@/*": ["./*"]
     }
-  }
+  },
+  "include": ["**/*.ts", "**/*.tsx"],
+  "exclude": ["node_modules", "android", "ios", ".expo"]
 }
