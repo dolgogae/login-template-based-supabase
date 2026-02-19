@@ -1,5 +1,7 @@
 import { redirect } from "next/navigation";
 import { createClient } from "@/lib/supabase/server";
+import { AdSenseBanner } from "@/components/ads/AdSenseBanner";
+import { CoupangBanner } from "@/components/ads/CoupangBanner";
 
 export default async function DashboardPage() {
   const supabase = await createClient();
@@ -46,6 +48,12 @@ export default async function DashboardPage() {
             로그아웃
           </button>
         </form>
+      </div>
+
+      {/* 광고 영역 - 활성화 시 하단에 표시됩니다 */}
+      <div className="mt-4 flex flex-col items-center gap-3">
+        <AdSenseBanner className="w-full max-w-xl" responsive />
+        <CoupangBanner width={728} height={90} />
       </div>
     </main>
   );

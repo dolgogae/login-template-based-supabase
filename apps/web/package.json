@@ -10,6 +10,7 @@
     "type-check": "tsc --noEmit"
   },
   "dependencies": {
+    "@repo/ads": "workspace:*",
     "@repo/supabase": "workspace:*",
     "@repo/ui": "workspace:*",
     "@supabase/ssr": "^0.8.0",
