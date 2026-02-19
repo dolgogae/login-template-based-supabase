@@ -1,6 +1,8 @@
 import { View, Text, TouchableOpacity, StyleSheet } from "react-native";
 import { supabase } from "../../lib/supabase/client";
 import { useSession } from "../../hooks/useSession";
+import { AdMobBanner } from "../../components/ads/AdMobBanner";
+import { CoupangBanner } from "../../components/ads/CoupangBanner";
 
 export default function HomeScreen() {
   const { user } = useSession();
@@ -30,6 +32,12 @@ export default function HomeScreen() {
         <TouchableOpacity style={styles.signOutButton} onPress={handleSignOut}>
           <Text style={styles.signOutText}>로그아웃</Text>
         </TouchableOpacity>
+      </View>
+
+      {/* 광고 영역 - 활성화 시 하단에 표시됩니다 */}
+      <View style={styles.adContainer}>
+        <AdMobBanner />
+        <CoupangBanner width={320} height={100} />
       </View>
     </View>
   );
@@ -98,5 +106,10 @@ const styles = StyleSheet.create({
     color: "#FFFFFF",
     fontSize: 15,
     fontWeight: "500",
+  },
+  adContainer: {
+    marginTop: 16,
+    alignItems: "center",
+    gap: 8,
   },
 });

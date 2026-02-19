@@ -115,6 +115,7 @@ login-template-based-supabase/
 │   ├── web/               # Next.js (Web)
 │   └── mobile/            # Expo (Android + iOS)
 ├── packages/
+│   ├── ads/               # 광고 토글 로직 (getEnabledAds, getAdMobUnitId)
 │   ├── supabase/          # 공유 타입 + provider 토글 로직
 │   ├── ui/                # 공유 디자인 토큰
 │   ├── typescript-config/ # 공유 TS 설정
@@ -153,6 +154,41 @@ pnpm supabase:reset          # DB 초기화 (마이그레이션 재실행)
 pnpm supabase:functions:serve # Edge Functions 로컬 실행
 ```
 
+## 광고 연동
+
+환경변수 하나로 광고를 활성화/비활성화할 수 있습니다 (코드 변경 없음).
+
+| 플랫폼 | 광고 네트워크 | 가이드 |
+|--------|-------------|--------|
+| Web | Google AdSense | [docs/ads/adsense.md](docs/ads/adsense.md) |
+| Web + Mobile | 쿠팡 파트너스 | [docs/ads/coupang.md](docs/ads/coupang.md) |
+| Mobile | Google AdMob | [docs/ads/admob.md](docs/ads/admob.md) |
+
+### 광고 활성화 예시
+
+```bash
+# Web (.env.local)
+NEXT_PUBLIC_ADS_ADSENSE_ENABLED=true
+NEXT_PUBLIC_ADS_ADSENSE_CLIENT_ID=ca-pub-XXXXXXXXXX
+NEXT_PUBLIC_ADS_ADSENSE_SLOT_ID=XXXXXXXXXX
+NEXT_PUBLIC_ADS_COUPANG_ENABLED=true
+NEXT_PUBLIC_ADS_COUPANG_ID=12345678
+NEXT_PUBLIC_ADS_COUPANG_TRACKING_CODE=AF_XXXXXXXXXX
+
+# Mobile (.env)
+EXPO_PUBLIC_ADS_ADMOB_ENABLED=true
+EXPO_PUBLIC_ADS_ADMOB_ANDROID_APP_ID=ca-app-pub-XXXXXXXXXX~XXXXXXXXXX
+EXPO_PUBLIC_ADS_ADMOB_IOS_APP_ID=ca-app-pub-XXXXXXXXXX~XXXXXXXXXX
+EXPO_PUBLIC_ADS_COUPANG_ENABLED=true
+EXPO_PUBLIC_ADS_COUPANG_ID=12345678
+EXPO_PUBLIC_ADS_COUPANG_TRACKING_CODE=AF_XXXXXXXXXX
+```
+
+> **AdMob 주의**: AdMob은 네이티브 빌드가 필요합니다. Expo Go에서는 동작하지 않습니다.
+> EAS Build 또는 `npx expo prebuild` 후 실행하세요.
+
+---
+
 ## 이 템플릿으로 새 프로젝트 시작하기
 
 1. 이 저장소를 복제하거나 fork합니다
@@ -160,3 +196,4 @@ pnpm supabase:functions:serve # Edge Functions 로컬 실행
 3. 사용할 provider의 [토큰을 발급](docs/providers/)합니다
 4. 환경변수 파일을 설정합니다
 5. 비즈니스 로직을 `apps/web/app/(protected)/` 또는 `apps/mobile/app/(app)/`에 추가합니다
+6. (선택) 광고 연동: 각 [docs/ads/](docs/ads/) 가이드를 따라 env var를 설정합니다
