@@ -75,6 +75,7 @@ pnpm dev:mobile
 ```
 
 → 전체 로컬 설정 가이드: [docs/local-dev.md](docs/local-dev.md)
+→ 프로덕션 배포 가이드: [docs/deployment.md](docs/deployment.md)
 
 ## Provider 설정
 
