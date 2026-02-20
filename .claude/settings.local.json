@@ -11,7 +11,13 @@
       "Bash(mkdir:*)",
       "Bash(supabase:*)",
       "Bash(turbo:*)",
-      "Bash(brew install:*)"
+      "Bash(brew install:*)",
+      "Bash(cat:*)",
+      "Bash(find:*)",
+      "Bash(node_modules/.bin/tsc:*)",
+      "Bash(/Users/sihun/workspace/projects/login-template-based-supabase/node_modules/.bin/tsc:*)",
+      "Bash(echo:*)",
+      "Bash(python3:*)"
     ]
   }
 }
